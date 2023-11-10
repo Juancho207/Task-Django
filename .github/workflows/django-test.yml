@@ -33,21 +33,21 @@ jobs:
         
     - name: Run migrations
       run: |
-        python manage.py makemigrations
+        source .env && python manage.py makemigrations
       env:
         DATABASE_URL: postgres://test_user:test_password@db:5432/test_db
-        $(cat .env)
+
 
     - name: Apply migrations
       run: |
-        python manage.py migrate
+        source .env && python manage.py migrate
       env:
         DATABASE_URL: postgres://test_user:test_password@db:5432/test_db
-        $(cat .env)
+
        
     - name: Run tests
       run: |
-        python manage.py test
+        source .env && python manage.py test
       env:
         DATABASE_URL: postgres://test_user:test_password@db:5432/test_db
-        $(cat .env)
+
