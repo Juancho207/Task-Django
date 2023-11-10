@@ -136,12 +136,12 @@ AUTHENTICATION_BACKENDS = [
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'SQL_DATABASE' in os.environ and os.environ['SQL_DATABASE'] or '',
-        'USER': 'SQL_USER' in os.environ and os.environ['SQL_USER'] or '',
-        'PASSWORD': 'SQL_PASSWORD' in os.environ and os.environ['SQL_PASSWORD'] or '',
-        'HOST': 'SQL_HOST' in os.environ and os.environ['SQL_HOST'] or '',
-        'PORT': 'SQL_PORT' in os.environ and os.environ['SQL_PORT'] or '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
         'OPTIONS': {
             'options': '-c search_path=public'
         },
