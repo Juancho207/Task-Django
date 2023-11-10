@@ -34,7 +34,7 @@ jobs:
 
     - name: Runing Lint (pylint)
       run: |
-        pylint $(git ls-files -- '*.py' ':!:**/migrations/*.py')
+        pylint --rcfile=.pylintrc $(git ls-files -- '*.py' ':!:**/migrations/*.py')
         
     - name: Run migrations
       run: |
