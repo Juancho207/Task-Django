@@ -34,6 +34,7 @@ EMAIL_HOST_USER = 'EMAIL_HOST_USER' in os.environ and os.environ['EMAIL_HOST_USE
 EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD' in os.environ and os.environ['EMAIL_HOST_PASSWORD'] or ''
 EMAIL_PORT = 'EMAIL_PORT' in os.environ and os.environ['EMAIL_PORT'] or ''
 
+
 # #############################################################################
 # AWS KEYS CONFIG
 # #############################################################################
@@ -48,7 +49,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET' in os.envi
 
 # Debug and Host Configurations
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', 'localhost:8000']
+ALLOWED_HOSTS = ['localhost', 'localhost:8000', 'tasky-demo-lb-1711423244.us-west-2.elb.amazonaws.com']
 
 
 # Application definition
@@ -64,6 +65,8 @@ INSTALLED_APPS = [
 
     #APP's Liberiras adicionales
     'django_bootstrap5',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     #APP's Propias
     '_apps.website',
@@ -100,11 +103,17 @@ ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
 
 #Redis & Celery Configuration
-CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_BROKER_URL = 'rediss://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+#Rest Framework Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -126,6 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #Auth Login options
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/'
 
 #Authentications Backends
@@ -136,12 +146,12 @@ AUTHENTICATION_BACKENDS = [
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'SQL_DATABASE' in os.environ and os.environ['SQL_DATABASE'] or '',
+        'USER': 'SQL_USER' in os.environ and os.environ['SQL_USER'] or '',
+        'PASSWORD': 'SQL_PASSWORD' in os.environ and os.environ['SQL_PASSWORD'] or '',
+        'HOST': 'SQL_HOST' in os.environ and os.environ['SQL_HOST'] or '',
+        'PORT': 'SQL_PORT' in os.environ and os.environ['SQL_PORT'] or '',
         'OPTIONS': {
             'options': '-c search_path=public'
         },
