@@ -1,2 +1,3 @@
 [MASTER]
 ignore-patterns=migrations
+ignore=28
