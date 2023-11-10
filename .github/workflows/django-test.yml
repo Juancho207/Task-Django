@@ -13,21 +13,19 @@ jobs:
     services:
       db:
         image: postgres:latest
-        ports:
-          - 5432:5432
         env:
           POSTGRES_DB: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10' 
-
-    - name: Wait for DB
-      run: sleep 30
 
     - name: Install dependencies
       run: |
