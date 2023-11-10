@@ -19,7 +19,6 @@ jobs:
           SQL_DB: test_db
           SQL_USER: test_user
           SQL_PASSWORD: test_password
-          SQL_HOST: localhost
  
 
     steps:
