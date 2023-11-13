@@ -11,7 +11,7 @@ class TareaFormTestCase(TestCase):
     def test_validar_formulario_tarea(self):
         """Form validator"""
         data = {
-            #'titulo': 'Nueva Tarea',
+            'titulo': 'Nueva Tarea',
             'email': 'nueva@example.com',
             'descripcion': 'Descripción de la nueva tarea',
         }
