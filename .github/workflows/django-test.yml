@@ -8,7 +8,7 @@ on:
 env:
   DATABASE_URL: psql://postgres:postgres@localhost:5432/test
 jobs:
-  build:
+  Testing:
 
     runs-on: ubuntu-latest
     services:
@@ -47,5 +47,5 @@ jobs:
         
     - name: Runing Lint (pylint)
       run: |
-        pylint **/*.py
+        pylint --verbose **/*.py
 
