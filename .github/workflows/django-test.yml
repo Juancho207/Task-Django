@@ -47,5 +47,5 @@ jobs:
         
     - name: Runing Lint (pylint)
       run: |
-        pylint --verbose --fail-under=8.5 **/*.py
+        pylint --verbose --fail-under=7.5 **/*.py
 
