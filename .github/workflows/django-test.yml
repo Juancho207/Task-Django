@@ -47,5 +47,5 @@ jobs:
         
     - name: Runing Lint (pylint)
       run: |
-        pylint $(git ls-files '*.py')
+        pylint **/*.py
 
