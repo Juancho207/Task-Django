@@ -35,7 +35,7 @@ jobs:
         
     - name: Run migrations
       run: |
-        python manage.py makemigrations
+        python manage.py makemigrations -v2
 
     - name: Apply migrations
       run: |
